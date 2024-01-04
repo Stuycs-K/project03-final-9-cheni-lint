@@ -2,28 +2,54 @@
 
 ## Group Members:
 
-names here.
+1. Tracey Lin
+2. Ivan Chen
        
 # Intentions:
 
-A statement of the problem you are solving and/or a high level description of the project.
-    
+We want to be able to access files on another machine. We do this by creating a client-server system such that the machine that stores the file always has an open server that can accept multiple concurrent clients. Once the client successfully connects to the server, it will gain access to a terminal which it uses to communicate with the subserver. There will be custom commands that allow the client to access the files it wants.
+   
 # Intended usage:
 
-A description as to how the project will be used (describe the user interface).
-  
+The client can connect to the server on any machine, most likely their own, and it will open up a terminal. In the terminal there will be customized commands they can use to help them navigate and access the files they want. 
+ 
 # Technical Details:
 
-A description of your technical design. This should include:
-   
-How you will be using the topics covered in class in the project.
-     
-How you are breaking down the project and who is responsible for which parts.
-  
-What data structures you will be using and how.
-     
-What algorithms and /or data structures you will be using, and how.
+Technical Design
+- Allocating memory (file tree)
+- Working with files (remote file system)
+- Finding information about files (sync feature)
+- Processes (fork out subservers to handle client interaction)
+- Signals (tracking client sessions and handling interruptions when writing)
+- Semaphores (controlling write access to each file)
+- Sockets (communication between servers and clients)
+
+
+Work Distribution
+Tracey: 
+- Sockets to create a client-server communication pipeline
+- Signals to handle interruptions during data transfers
+- Custom terminal for client interface
+
+Ivan: 
+- Server file access
+- Server file transfers (to/from)
+
+Extra: 
+- Data validation
+- File synchronization
+- Access control
     
+
+Algorithms/Data Structures
+- TCP-like handshake to establish client connection
+- Array for storing a copy of the file structure
+- Semaphores for write queue
+   
 # Intended pacing:
 
-A timeline with expected completion dates of parts of the project.
+- (1/5) Sockets to create a client-server communication pipeline
+- (1/9) Server file access
+- (1/11) Server file transfers (to/from)
+- (1/12) Custom terminal for client interface
+- (1/13) Signals to handle interruptions during data transfers
