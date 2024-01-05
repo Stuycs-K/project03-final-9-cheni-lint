@@ -1,23 +1,4 @@
-#include "networking.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h> 
-#include <unistd.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <math.h>
-#include <ctype.h>
-#include <stdbool.h>
-#include <sys/wait.h>
-#include <signal.h>
-#include <string.h>
-#include <sys/ipc.h>
-#include <sys/sem.h>
-#include <errno.h>
-#include <sys/socket.h> 
-#include <netdb.h>
+#include "network.h"
 
 void clientLogic(int server_socket){
   char str[BUFFER_SIZE];
