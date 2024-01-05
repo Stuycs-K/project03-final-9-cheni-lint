@@ -10,12 +10,6 @@ heavily debated what we want to do and after multiple tries we settled with clie
 a terminal to communicate and allows for the access and transfer of data, took about 2 hours
 
 ### 2024-01-04 - start working on server client network
-i started doing the client server 
-
-## Player 2
-
-### 2024-01-02 - Brief description
-Expanded description including how much time was spent on task.
-
-### 2024-01-03 - Brief description
-Expanded description including how much time was spent on task.
+i started doing the client server - tracey
+fixed up the imports so that the client server connection works - ivan
+resolve bug from redefining PORT constant - ivan
