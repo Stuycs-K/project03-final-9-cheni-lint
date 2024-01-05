@@ -15,7 +15,8 @@ i started doing the client server, basically just copy and pasting lab16 and k c
 ## Player 2
 
 ### 2024-01-02 - Brief description
-Expanded description including how much time was spent on task.
+partner matching with tracey
 
 ### 2024-01-03 - Brief description
-Expanded description including how much time was spent on task.
+fixed up the imports so that the client server connection works - ivan
+resolve bug from redefining PORT constant - ivan

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -14,11 +15,10 @@ int main(){
     struct addrinfo * hints, * results;
     hints = calloc(1,sizeof(struct addrinfo));
 
-
     hints->ai_family = AF_INET;
     hints->ai_socktype = SOCK_STREAM; //TCP socket
     hints->ai_flags = AI_PASSIVE; //only needed on server
-    getaddrinfo(NULL, PORT , hints, &results);  //NULL is localhost or 127.0.0.1
+    getaddrinfo(NULL, PORT, hints, &results);  //NULL is localhost or 127.0.0.1
 
     //create socket
     int listen_socket = socket(results->ai_family, results->ai_socktype, results->ai_protocol);\

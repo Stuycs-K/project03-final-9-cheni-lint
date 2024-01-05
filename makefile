@@ -1,7 +1,6 @@
-
-compile client.out server.out: client.o networking.o server.o
-	@gcc -o client.out client.o networking.o -w -lm
-	@gcc -o server.out server.o networking.o -w -lm
+compile client.out server.out: client.o network.o server.o
+	@gcc -o client.out client.o network.o -w -lm
+	@gcc -o server.out server.o network.o -w -lm
 
 client: client.out
 	@./client.out $(ARGS)
@@ -9,14 +8,14 @@ client: client.out
 server: server.out
 	@./server.out $(ARGS)
 
-client.o: client.c networking.h
+client.o: client.c network.h
 	@gcc -c client.c -w -lm
 
-server.o: server.c networking.h
+server.o: server.c network.h
 	@gcc -c server.c -w -lm
 
-networking.o: networking.c networking.h
-	@gcc -c networking.c -w -lm
+network.o: network.c network.h
+	@gcc -c network.c -w -lm
 
 clean:
 	@rm *.o 2> /dev/null || true
