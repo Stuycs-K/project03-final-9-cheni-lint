@@ -18,5 +18,16 @@ The user will interact with this program through a terminal with the commands de
 
 |command|usage|function|
 |-------|-----|--------|
-|ls|`ls <dir>`|lists the files in the `<dir>` directory. default is the current directory (`.`)|
 |cd|`cd <dir>`|changes the current working directory to the `<dir>` directory. default is the current directory (`.`)|
+|ls|`ls <dir>`|lists the files in the `<dir>` directory. default is the current directory (`.`)|
+
+### Project Structure
+
+|file      |description|
+|----------|-----------|
+|client.c  |handles client connection and communication with server + manages interface|
+|fileman.c |contains functions to manage the server interaction with files|
+|network.c |handles communication between server and client|
+|server.c  |handles server actions like file management, file transfer, and responding to client commands|
+|terminal.c|contains functions to manage the client terminal|
+|transfer.c|contains functions to manage the transfer of files|
