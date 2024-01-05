@@ -8,11 +8,11 @@
 #include <errno.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include "networking.h"
 
 int main(){
     struct addrinfo * hints, * results;
     hints = calloc(1,sizeof(struct addrinfo));
-    char* PORT = "9998";
 
 
     hints->ai_family = AF_INET;

@@ -10,7 +10,7 @@ heavily debated what we want to do and after multiple tries we settled with clie
 a terminal to communicate and allows for the access and transfer of data, took about 2 hours
 
 ### 2024-01-04 - start working on server client network
-i started doing the client server 
+i started doing the client server, basically just copy and pasting lab16 and k code
 
 ## Player 2
 
