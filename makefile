@@ -17,6 +17,16 @@ server.o: server.c network.h
 network.o: network.c network.h
 	@gcc -c network.c -w -lm
 
+fileman.o: fileman.c network.h
+	@gcc -c fileman.c -w -lm
+
+# for testing
+fileman.out: fileman.o network.o
+	@gcc -o fileman.out network.o fileman.o -w -lm
+
+fileman: fileman.out
+	@./fileman.out $(ARGS)
+
 clean:
 	@rm *.o 2> /dev/null || true
 	@rm *~ 2> /dev/null || true
