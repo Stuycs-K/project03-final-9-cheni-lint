@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -9,7 +8,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "networking.h"
+#include "network.h"
 
 int main(){
     struct addrinfo * hints, * results;

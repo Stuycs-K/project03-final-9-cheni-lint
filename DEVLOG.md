@@ -12,6 +12,10 @@ a terminal to communicate and allows for the access and transfer of data, took a
 ### 2024-01-04 - start working on server client network
 i started doing the client server, basically just copy and pasting lab16 and k code
 
+### 2024-01-05 - research how to connect with multiple client using select
+figure out that you need multiple thread, fork, or select in order to do multiple client connection and just reading
+up on code to understand select more
+
 ## Player 2
 
 ### 2024-01-02 - Brief description
