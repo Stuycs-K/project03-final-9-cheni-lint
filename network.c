@@ -24,9 +24,11 @@ int client_tcp_handshake(char * server_address) {
   //connect to the server
   connect(serverd, results->ai_addr, results->ai_addrlen);
 
+  printf("stuck 2\n");
   free(hints);
   freeaddrinfo(results);
 
+  printf("stuck 3\n");
   return serverd;
 }
 
