@@ -18,8 +18,16 @@ The user will interact with this program through a terminal with the commands de
 
 |command|usage|function|
 |-------|-----|--------|
-|cd|`cd <dir>`|changes the current working directory to the `<dir>` directory. default is the current directory (`.`)|
-|ls|`ls <dir>`|lists the files in the `<dir>` directory. default is the current directory (`.`)|
+|cd     |`cd <dir>`|changes the current working directory to the `<dir>` directory. default is `.`|
+|ls     |`ls <dir>`|lists the files in the `<dir>` directory. default is `.`|
+|up     |`up <filename>`|uploads file from client to server|
+|down   |`down <filename>`|downloads file from server to client|
+|pwd    |`pwd`|prints working directory|
+|touch  |`touch <filename>`|creates new file|
+|rm     |`rm <filename>`|removes a file. use `-r` flag to remove recursively|
+|mkdir  |`mkdir <dirname>`|creates a directory|
+|size   |`size <filename>`|print out the size of a file. use `-r` flag to get size recursively|
+|end    |`end`|ends client session with server|
 
 ### Project Structure
 
