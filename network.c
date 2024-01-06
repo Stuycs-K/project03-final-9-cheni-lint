@@ -22,7 +22,9 @@ int client_tcp_handshake(char * server_address) {
 
   printf("stuck 1\n");
   //connect to the server
-  connect(serverd, results->ai_addr, results->ai_addrlen);
+  if (connect(serverd, results->ai_addr, results->ai_addrlen)<0){
+    printf("negative connect\n");
+  }
 
   printf("stuck 2\n");
   free(hints);
