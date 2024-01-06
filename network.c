@@ -13,12 +13,14 @@ int client_tcp_handshake(char * server_address) {
   // getaddrinfo(NULL, “80”, hints, &results);  //Server sets node to NULL
   getaddrinfo(server_address, PORT, hints, &results);
   //marge is “149.89.150.100”
-  
+
+  printf("stuck 0\n");
   int serverd;
   //create the socket
   serverd = socket(results->ai_family, results->ai_socktype, 0);
   // printf("the ai protocol is [%d]\n", results->ai_protocol);
 
+  printf("stuck 1\n");
   //connect to the server
   connect(serverd, results->ai_addr, results->ai_addrlen);
 
