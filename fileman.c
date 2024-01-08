@@ -27,17 +27,15 @@ int ls(char * name) {
     }
 }
 
-int cd() {
-    
+int cd(char * name) {
+    if (chdir(name) != 0) perror("chdir failed");
+    return 0;
 }
 
 int pwd() {
     char cwd[BUFFER_SIZE];
     if (getcwd(cwd, sizeof(cwd))) printf("%s\n", cwd);
-    else {
-        perror("getcwd error");
-        return -1;
-    }
+    else perror("getcwd failed");
     return 0;
 }
 
@@ -65,7 +63,8 @@ int rm(char * name, char is_dir) {
 }
 
 int main(int argc, char *argv[]) {
-    // ls("test");
-    // pwd();
-    rm("test", 1);
+    // rm("test", 1);
+    pwd();
+    cd("tessdst");
+    pwd();
 }
