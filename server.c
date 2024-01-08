@@ -43,6 +43,7 @@ int main(){
     sock_size = sizeof(client_address);
 
     fd_set read_fds;
+    fd_set backup_fd_set = read_fds;
 
     char buff[1025]="";
 

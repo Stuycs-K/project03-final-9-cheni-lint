@@ -6,7 +6,7 @@ void clientLogic(int server_socket){
   fgets(str, BUFFER_SIZE, stdin);
   send(server_socket,str,sizeof(str),0);
   read(server_socket,str,BUFFER_SIZE);
-  printf("modified str: %s\n", str);
+  printf("returned str: %s\n", str);
   close(server_socket);
 }
 
