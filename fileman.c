@@ -30,11 +30,17 @@ int ls() {
 }
 
 int cd() {
-
+    
 }
 
 int pwd() {
-
+    char cwd[BUFFER_SIZE];
+    if (getcwd(cwd, sizeof(cwd))) printf("%s\n", cwd);
+    else {
+        perror("getcwd error");
+        return -1;
+    }
+    return 0;
 }
 
 int rm() {
@@ -43,4 +49,5 @@ int rm() {
 
 int main(int argc, char *argv[]) {
     ls();
+    pwd();
 }
