@@ -62,9 +62,15 @@ int rm(char * name, char is_dir) {
     return remove(name);
 }
 
+int touch(char * name) {
+    if (open(name, O_RDWR | O_CREAT, 0644) < 0) perror("touch failed");
+    return 0;
+}
+
 int main(int argc, char *argv[]) {
     // rm("test", 1);
-    pwd();
-    cd("tessdst");
-    pwd();
+    touch("test/helloworld");
+    // pwd();
+    // cd("tessdst");
+    // pwd();
 }
