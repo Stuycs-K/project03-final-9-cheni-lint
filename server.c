@@ -79,6 +79,8 @@ int main(){
             printf("\nRecieved from client '%s'\n",buff);
             close(client_socket);
         }
+
+        read_fds = backup_fd_set;
     }
 
 
