@@ -14,23 +14,23 @@ int client_tcp_handshake(char * server_address) {
   getaddrinfo(server_address, PORT, hints, &results);
   //marge is “149.89.150.100”
 
-  printf("stuck 0\n");
+  // printf("stuck 0\n");
   int serverd;
   //create the socket
   serverd = socket(results->ai_family, results->ai_socktype, 0);
   // printf("the ai protocol is [%d]\n", results->ai_protocol);
 
-  printf("stuck 1\n");
+  // printf("stuck 1\n");
   //connect to the server
   if (connect(serverd, results->ai_addr, results->ai_addrlen)<0){
     printf("negative connect\n");
   }
 
-  printf("stuck 2\n");
+  // printf("stuck 2\n");
   free(hints);
   freeaddrinfo(results);
 
-  printf("stuck 3\n");
+  // printf("stuck 3\n");
   return serverd;
 }
 

@@ -16,6 +16,16 @@ i started doing the client server, basically just copy and pasting lab16 and k c
 figure out that you need multiple thread, fork, or select in order to do multiple client connection and just reading
 up on code to understand select more
 
+### 2024-01-06 - did testing
+try to see why it wouldn't connect to client on the school laptop and turns out I forgot to do args and that wasted
+a stupid amount of time (1.5 hrs)
+
+### 2024-01-07 - did testing + research how to use select to decide which client to listen to
+look at codes online and read documentations on it (.5 hrs)
+
+### 2024-01-08 - tried implementing select listen
+
+
 ## Ivan
 
 ### 2024-01-02 - Brief description
