@@ -19,6 +19,7 @@ int main(int argc, char *argv[] ) {
   while(1){
     // printf("stuck here\n");
     int server_socket = client_tcp_handshake(IP);
+    printf("server socket current connection state: [%d]\n", server_socket);
     // printf("or here\n");
     clientLogic(server_socket);
     sleep(1);

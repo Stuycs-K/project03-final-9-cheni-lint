@@ -23,8 +23,8 @@ a stupid amount of time (1.5 hrs)
 ### 2024-01-07 - did testing + research how to use select to decide which client to listen to
 look at codes online and read documentations on it (.5 hrs)
 
-### 2024-01-08 - tried implementing select listen
-
+### 2024-01-08 - more testing
+in class: figure out why it connects back and forth
 
 ## Ivan
 
