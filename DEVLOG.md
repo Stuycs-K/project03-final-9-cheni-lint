@@ -25,6 +25,7 @@ look at codes online and read documentations on it (.5 hrs)
 
 ### 2024-01-08 - more testing
 in class: figure out why it connects back and forth
+outisde of class: figure out how to do multiple concurrent client
 
 ## Ivan
 

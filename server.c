@@ -49,6 +49,16 @@ int main(){
 
     while(1){
 
+        // int client_socket;
+
+        // //accept the client connection
+        // socklen_t sock_size;
+        // struct sockaddr_storage client_address;
+        // sock_size = sizeof(client_address);
+        // client_socket = accept(listen_socket,(struct sockaddr *)&client_address, &sock_size);
+    
+        // return client_socket;
+
         FD_ZERO(&read_fds);
         FD_SET(STDIN_FILENO, &read_fds);
         FD_SET(listen_socket,&read_fds);
@@ -76,11 +86,9 @@ int main(){
                 buff[strlen(buff)-1]=0;
             }
 
-            printf("\nRecieved from client '%s'\n",buff);
+            printf("\nRecieved from client [%d] '%s'\n", client_socket, buff);
             close(client_socket);
         }
-
-        read_fds = backup_fd_set;
     }
 
 
