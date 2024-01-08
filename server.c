@@ -77,7 +77,7 @@ int main(){
             }
 
             printf("\nRecieved from client '%s'\n",buff);
-            // close(client_socket);
+            close(client_socket);
         }
     }
 
