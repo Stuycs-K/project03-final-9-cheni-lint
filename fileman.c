@@ -1,16 +1,14 @@
 #include "network.h"
 
-int size(char* name, char recursive) {
+int size(char* name, char is_dir) {
     struct stat stats;
-    if (recursive) {
+    if (is_dir) {
         int sum;
         struct dirent *entry;
         DIR *dir = opendir(name);
         while (entry = readdir(dir)) {
-            if (entry->d_type == DT_DIR)
-                size(entry->d_name, 1);
-            else
-                size(entry->d_name, 0);
+            if (entry->d_type == DT_DIR) size(entry->d_name, 1);
+            else size(entry->d_name, 0);
         }
     }
 
@@ -18,9 +16,9 @@ int size(char* name, char recursive) {
     return stats.st_size;
 }
 
-int ls() {
+int ls(char * name) {
     struct dirent * entry;
-    DIR *dir = opendir(".");
+    DIR *dir = opendir(name);
     while (entry = readdir(dir)) {
         printf("%s %7d %12s\n",
                entry->d_type == DT_DIR ? "d" : "f",
@@ -43,11 +41,31 @@ int pwd() {
     return 0;
 }
 
-int rm() {
-
+int rm(char * name, char is_dir) {
+    if (is_dir) {
+        struct dirent *entry;
+        DIR *dir = opendir(name);
+        while (entry = readdir(dir)) {
+            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
+            char rpath[BUFFER_SIZE];
+            strcat(rpath, name);
+            strcat(rpath, "/");
+            strcat(rpath, entry->d_name);
+            if (entry->d_type == DT_DIR) {
+                int x = rm(rpath, 1);
+                printf("%d\n", x);
+            } else {
+                int x = rm(rpath, 0);
+                printf("%d\n", x);
+            }
+            rmdir(name);
+        }
+    }
+    return remove(name);
 }
 
 int main(int argc, char *argv[]) {
-    ls();
-    pwd();
+    // ls("test");
+    // pwd();
+    rm("test", 1);
 }
