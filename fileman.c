@@ -1,15 +1,28 @@
 #include "network.h"
 
+char * rpath(char * name, struct dirent * entry) {
+    char rpath[BUFFER_SIZE];
+    strcat(rpath, name);
+    strcat(rpath, "/");
+    strcat(rpath, entry->d_name);
+    return rpath;
+}
+
 int size(char* name, char is_dir) {
     struct stat stats;
     if (is_dir) {
-        int sum;
+        int sum = 0;
         struct dirent *entry;
         DIR *dir = opendir(name);
         while (entry = readdir(dir)) {
-            if (entry->d_type == DT_DIR) size(entry->d_name, 1);
-            else size(entry->d_name, 0);
+            char rpath[BUFFER_SIZE];
+            strcat(rpath, name);
+            strcat(rpath, "/");
+            strcat(rpath, entry->d_name);
+            if (entry->d_type == DT_DIR) sum += size(entry->d_name, 1);
+            else sum += size(entry->d_name, 0);
         }
+        return sum;
     }
 
     stat(name, &stats);
@@ -27,17 +40,15 @@ int ls(char * name) {
     }
 }
 
-int cd() {
-    
+int cd(char * name) {
+    if (chdir(name) != 0) perror("chdir failed");
+    return 0;
 }
 
 int pwd() {
     char cwd[BUFFER_SIZE];
     if (getcwd(cwd, sizeof(cwd))) printf("%s\n", cwd);
-    else {
-        perror("getcwd error");
-        return -1;
-    }
+    else perror("getcwd failed");
     return 0;
 }
 
@@ -64,8 +75,16 @@ int rm(char * name, char is_dir) {
     return remove(name);
 }
 
+int touch(char * name) {
+    if (open(name, O_RDWR | O_CREAT, 0644) < 0) perror("touch failed");
+    return 0;
+}
+
 int main(int argc, char *argv[]) {
-    // ls("test");
+    ls(".");
+    // rm("test", 1);
+    // touch("test/helloworld");
     // pwd();
-    rm("test", 1);
+    // cd("tessdst");
+    // pwd();
 }
