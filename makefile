@@ -17,7 +17,7 @@ server.o: server.c network.h
 network.o: network.c network.h
 	@gcc -c network.c -w -lm
 
-fileman.o: fileman.c network.h fileman.h
+fileman.o: fileman.c network.h
 	@gcc -c fileman.c -w -lm
 
 terminal.o: terminal.c network.h terminal.h

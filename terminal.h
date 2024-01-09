@@ -19,4 +19,7 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+char **  parse_args( char * line, char ** arg_ary, char* c);
+char **  parse_argss( char * line, char ** arg_ary, char* c, int* a );
+
 #endif
