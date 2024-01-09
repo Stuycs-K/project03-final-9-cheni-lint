@@ -1,15 +1,28 @@
 #include "network.h"
 
+char * rpath(char * name, struct dirent * entry) {
+    char rpath[BUFFER_SIZE];
+    strcat(rpath, name);
+    strcat(rpath, "/");
+    strcat(rpath, entry->d_name);
+    return rpath;
+}
+
 int size(char* name, char is_dir) {
     struct stat stats;
     if (is_dir) {
-        int sum;
+        int sum = 0;
         struct dirent *entry;
         DIR *dir = opendir(name);
         while (entry = readdir(dir)) {
-            if (entry->d_type == DT_DIR) size(entry->d_name, 1);
-            else size(entry->d_name, 0);
+            char rpath[BUFFER_SIZE];
+            strcat(rpath, name);
+            strcat(rpath, "/");
+            strcat(rpath, entry->d_name);
+            if (entry->d_type == DT_DIR) sum += size(entry->d_name, 1);
+            else sum += size(entry->d_name, 0);
         }
+        return sum;
     }
 
     stat(name, &stats);
@@ -68,8 +81,9 @@ int touch(char * name) {
 }
 
 int main(int argc, char *argv[]) {
+    ls(".");
     // rm("test", 1);
-    touch("test/helloworld");
+    // touch("test/helloworld");
     // pwd();
     // cd("tessdst");
     // pwd();
