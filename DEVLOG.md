@@ -42,3 +42,7 @@ resolve bug from redefining PORT constant - ivan
 ### 2024-01-05 - Worked on fileman funcs
 i worked on the file management functions, starting with `ls()` and `size()`
 i want the `size()` to work recursively also with directories and started, but didn't finish implementing that
+
+### 2024-01-08 - Almost done with fileman funcs
+i completed all of the fileman funcs other than recursive `size()`
+started to think about server side of handling terminal input
