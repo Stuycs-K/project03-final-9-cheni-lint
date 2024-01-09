@@ -1,4 +1,5 @@
 #include "network.h"
+#include "terminal.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h> 
@@ -14,7 +15,6 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <sys/wait.h>
-#include "command.h"
 #include <signal.h>
 
 int main(){

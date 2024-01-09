@@ -27,6 +27,9 @@ look at codes online and read documentations on it (.5 hrs)
 in class: figure out why it connects back and forth (1hr)
 outisde of class: figure out how to do multiple concurrent client, started on the skeleton of terminal making (1 hr)
 
+### 2024-01-09 - 
+
+
 ## Ivan
 
 ### 2024-01-02 - Brief description
