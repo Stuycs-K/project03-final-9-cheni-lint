@@ -50,3 +50,8 @@ i want the `size()` to work recursively also with directories and started, but d
 ### 2024-01-08 - Almost done with fileman funcs
 i completed all of the fileman funcs other than recursive `size()`
 started to think about server side of handling terminal input
+
+### 2024-01-09 - Fileman + Server
+added ability to test input from user (client) in server.c
+waiting for terminal part to be complete so args are actually properly handled
+started thinking about how to transfer the files between server and client
