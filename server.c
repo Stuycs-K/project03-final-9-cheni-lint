@@ -1,16 +1,7 @@
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <time.h>
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "network.h"
+#include "fileman.h"
 
-int main(){
+int main() {
     struct addrinfo * hints, * results;
     hints = calloc(1,sizeof(struct addrinfo));
 
@@ -49,16 +40,6 @@ int main(){
 
     while(1){
 
-        // int client_socket;
-
-        // //accept the client connection
-        // socklen_t sock_size;
-        // struct sockaddr_storage client_address;
-        // sock_size = sizeof(client_address);
-        // client_socket = accept(listen_socket,(struct sockaddr *)&client_address, &sock_size);
-    
-        // return client_socket;
-
         FD_ZERO(&read_fds);
         FD_SET(STDIN_FILENO, &read_fds);
         FD_SET(listen_socket,&read_fds);
@@ -90,8 +71,6 @@ int main(){
             close(client_socket);
         }
     }
-
-
 
     free(hints);
     freeaddrinfo(results);
