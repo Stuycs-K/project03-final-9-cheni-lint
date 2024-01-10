@@ -98,6 +98,7 @@ int main() {
         }
     }
 
+    free(buff);
     free(hints);
     freeaddrinfo(results);
     return 0;

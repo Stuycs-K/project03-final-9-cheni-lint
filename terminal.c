@@ -48,12 +48,15 @@ char **  parse_args( char * line, char ** arg_ary, char* c){
 }
 
 int server_terminal(char* userinput){
-    setvbuf(stdout, NULL, _IONBF, 0);
-    while(1){
+    // setvbuf(stdout, NULL, _IONBF, 0);
+    // while(1){
+
+
+
         char s[100];
         char** words=calloc(100,sizeof(char*));
         char ** commands=calloc(100,sizeof(char*));
-        printf("%s$ ", getcwd(s, 100));
+        // printf("%s$ ", getcwd(s, 100));
         // printf("userinput : %s\n", userinput);
         if(userinput[0]=='e'&&userinput[1]=='x'&&userinput[2]=='i'&&userinput[3]=='t'&&userinput[4]!='\n'){
             printf("exit\n");
@@ -138,12 +141,15 @@ int server_terminal(char* userinput){
             }
             else printf("%s not found\n", commands[i]);
         }
-        free(words);
         free(userinput);
         free(commands);
-    }
+        printf("reached bottom\n");
 
 
-    printf("logout\n");
-    exit(0);
+
+    // }
+
+
+    // printf("logout\n");
+    // exit(0);
 }
