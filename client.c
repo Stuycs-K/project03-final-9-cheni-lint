@@ -1,4 +1,6 @@
 #include "network.h"
+#include "fileman.h"
+#include "terminal.h"
 
 void clientLogic(int server_socket, char* str) {
   send(server_socket,str,sizeof(str),0);

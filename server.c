@@ -1,5 +1,6 @@
 #include "network.h"
 #include "fileman.h"
+#include "terminal.h"
 
 int main() {
     struct addrinfo * hints, * results;
@@ -36,7 +37,7 @@ int main() {
     fd_set read_fds;
     fd_set backup_fd_set = read_fds;
 
-    char buff[1025]="";
+    char* buff=calloc(1025, sizeof(char));
 
     while(1){
 
@@ -69,29 +70,31 @@ int main() {
 
             printf("\nRecieved from client [%d] '%s'\n", client_socket, buff);
 
-            // TODO: move to terminal.c
-            // process the command
-            if (strcmp(buff, "ls") == 0) {
-                ls(".");
-            }
-            else if (strcmp(buff, "cd") == 0) {
-                cd("..");
-            }
-            else if (strcmp(buff, "pwd") == 0) {
-                pwd();
-            }
-            else if (strcmp(buff, "rm") == 0) {
-                rm("test.txt", 0);
-            }
-            else if (strcmp(buff, "mkdir" == 0)) {
-                mkdir("test", 0777);
-            }
-            else if (strcmp(buff, "touch") == 0) {
-                touch("test.txt");
-            }
-            else printf("%s not found\n", buff);
+            if(server_terminal(buff)<0) err;
 
-            close(client_socket);
+            // // TODO: move to terminal.c
+            // // process the command
+            // if (strcmp(buff, "ls") == 0) {
+            //     ls(".");
+            // }
+            // else if (strcmp(buff, "cd") == 0) {
+            //     cd("..");
+            // }
+            // else if (strcmp(buff, "pwd") == 0) {
+            //     pwd();
+            // }
+            // else if (strcmp(buff, "rm") == 0) {
+            //     rm("test.txt", 0);
+            // }
+            // // else if (strcmp(buff, "mkdir" == 0)) {
+            // //     mkdir("test", 0777);
+            // // }
+            // else if (strcmp(buff, "touch") == 0) {
+            //     touch("test.txt");
+            // }
+            // else printf("%s not found\n", buff);
+
+            // close(client_socket);
         }
     }
 

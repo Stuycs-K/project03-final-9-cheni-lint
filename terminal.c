@@ -1,21 +1,6 @@
 #include "network.h"
 #include "terminal.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h> 
-#include <unistd.h>
-#include <string.h>
-#include <string.h>
-#include <sys/stat.h>
-#include <errno.h>
-#include <time.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <math.h>
-#include <ctype.h>
-#include <stdbool.h>
-#include <sys/wait.h>
-#include <signal.h>
+#include "fileman.h"
 
 int error(){
     printf("errno %d\n",errno);
@@ -62,17 +47,13 @@ char **  parse_args( char * line, char ** arg_ary, char* c){
     }
 }
 
-int main(){
+int server_terminal(char* userinput){
     setvbuf(stdout, NULL, _IONBF, 0);
     while(1){
+        char s[100];
         char** words=calloc(100,sizeof(char*));
         char ** commands=calloc(100,sizeof(char*));
-        char * userinput=calloc(256, sizeof(char));
         printf("%s$ ", getcwd(s, 100));
-        if(fgets(userinput, 256, stdin)==NULL){
-            ferror(stdin);
-            // printf("NULLL\n");
-        }
         // printf("userinput : %s\n", userinput);
         if(userinput[0]=='e'&&userinput[1]=='x'&&userinput[2]=='i'&&userinput[3]=='t'&&userinput[4]!='\n'){
             printf("exit\n");
@@ -127,31 +108,35 @@ int main(){
                 printf("exit\n");
                 exit(0);
             }
-            if(strcmp(words[0],"touch")==0){
+            else if(strcmp(words[0],"touch")==0){
                 if(touch(words[1])<0) error(); 
             }
-            if(strcmp(words[0],"rm")==0){
+            else if(strcmp(words[0],"rm")==0){
                 struct stat * stat_b=malloc(sizeof(struct stat)*1);
                 if(stat(words[1], stat_b)<0) error();
-                if(rm(words[1], S_ISDIR(statbuf.st_mode))<0) error();
+                if(rm(words[1], S_ISDIR(stat_b->st_mode))<0) error();
             }
-            if(strcmp(words[0],"pwd")==0){
+            else if(strcmp(words[0],"pwd")==0){
                 if(pwd()<0) error();
             }
-            if(strcmp(words[0],"cd")==0){
+            else if(strcmp(words[0],"cd")==0){
                 if(cd(words[1])<0) error();
             }
-            if(strcmp(words[0],"ls")==0){
+            else if(strcmp(words[0],"ls")==0){
                 if(ls(words[1])<0) error();
             }
-            if(strcmp(words[0],"size")==0){
+            else if(strcmp(words[0],"size")==0){
                 struct stat * stat_b=malloc(sizeof(struct stat)*1);
                 if(stat(words[1], stat_b)<0) error();
-                if(size(words[1], S_ISDIR(statbuf.st_mode))<0) error();
+                if(size(words[1], S_ISDIR(stat_b->st_mode))<0) error();
             }
-            if(strcmp(words[0],"rpath")==0){
-                // char * rpath(words[1], struct dirent * entry);
+            // else if (strcmp(words[0],"mkdir")==0) {
+            //     mkdir(words[1], 0777);
+            // }
+            else if (strcmp(words[0],"touch")==0) {
+                touch(words[1]);
             }
+            else printf("%s not found\n", commands[i]);
         }
         free(words);
         free(userinput);

@@ -8,19 +8,19 @@ client: client.out
 server: server.out
 	@./server.out $(ARGS)
 
-client.o: client.c network.h
+client.o: client.c network.h fileman.h terminal.h
 	@gcc -c client.c -w -lm
 
-server.o: server.c network.h fileman.h
+server.o: server.c network.h fileman.h terminal.h
 	@gcc -c server.c -w -lm
 
 network.o: network.c network.h
 	@gcc -c network.c -w -lm
 
-fileman.o: fileman.c network.h
+fileman.o: fileman.c network.h fileman.h
 	@gcc -c fileman.c -w -lm
 
-terminal.o: terminal.c network.h terminal.h
+terminal.o: terminal.c network.h terminal.h fileman.h
 	@gcc -c terminal.c -w -lm
 
 # for testing
@@ -31,8 +31,8 @@ fileman: fileman.out
 	@./fileman.out $(ARGS)
 
 # for testing
-terminal.out: terminal.o network.o
-	@gcc -o terminal.out network.o terminal.o -w -lm
+terminal.out: terminal.o network.o fileman.o 
+	@gcc -o terminal.out network.o terminal.o fileman.o -w -lm
 
 terminal: terminal.out
 	@./terminal.out $(ARGS)
