@@ -1,6 +1,6 @@
-compile client.out server.out: client.o network.o server.o
+compile client.out server.out: client.o server.o network.o fileman.o
 	@gcc -o client.out client.o network.o -w -lm
-	@gcc -o server.out server.o network.o -w -lm
+	@gcc -o server.out server.o network.o fileman.o -w -lm
 
 client: client.out
 	@./client.out $(ARGS)
@@ -11,7 +11,7 @@ server: server.out
 client.o: client.c network.h
 	@gcc -c client.c -w -lm
 
-server.o: server.c network.h
+server.o: server.c network.h fileman.h
 	@gcc -c server.c -w -lm
 
 network.o: network.c network.h
