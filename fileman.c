@@ -1,4 +1,5 @@
 #include "network.h"
+#include "fileman.h"
 
 char * rpath(char * name, struct dirent * entry) {
     char rpath[BUFFER_SIZE];
