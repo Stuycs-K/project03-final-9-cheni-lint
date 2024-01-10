@@ -1,6 +1,6 @@
-compile client.out server.out: client.o server.o network.o fileman.o
-	@gcc -o client.out client.o network.o -w -lm
-	@gcc -o server.out server.o network.o fileman.o -w -lm
+compile client.out server.out: client.o server.o network.o fileman.o terminal.o
+	@gcc -o client.out client.o network.o fileman.o terminal.o -w -lm
+	@gcc -o server.out server.o network.o fileman.o terminal.o -w -lm
 
 client: client.out
 	@./client.out $(ARGS)
@@ -25,14 +25,14 @@ terminal.o: terminal.c network.h terminal.h fileman.h
 
 # for testing
 fileman.out: fileman.o network.o
-	@gcc -o fileman.out network.o fileman.o -w -lm
+	@gcc -c fileman.out network.o fileman.o -w -lm
 
 fileman: fileman.out
 	@./fileman.out $(ARGS)
 
 # for testing
 terminal.out: terminal.o network.o fileman.o 
-	@gcc -o terminal.out network.o terminal.o fileman.o -w -lm
+	@gcc -c terminal.out network.o terminal.o fileman.o -w -lm
 
 terminal: terminal.out
 	@./terminal.out $(ARGS)
