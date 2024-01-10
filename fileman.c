@@ -9,6 +9,7 @@ char * rpath(char * name, struct dirent * entry) {
     return rpath;
 }
 
+// TODO: fix recursive size
 int size(char* name, char is_dir) {
     struct stat stats;
     if (is_dir) {
@@ -79,13 +80,4 @@ int rm(char * name, char is_dir) {
 int touch(char * name) {
     if (open(name, O_RDWR | O_CREAT, 0644) < 0) perror("touch failed");
     return 0;
-}
-
-int main(int argc, char *argv[]) {
-    ls(".");
-    // rm("test", 1);
-    // touch("test/helloworld");
-    // pwd();
-    // cd("tessdst");
-    // pwd();
 }

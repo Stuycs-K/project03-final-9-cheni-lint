@@ -68,6 +68,29 @@ int main() {
             }
 
             printf("\nRecieved from client [%d] '%s'\n", client_socket, buff);
+
+            // TODO: move to terminal.c
+            // process the command
+            if (strcmp(buff, "ls") == 0) {
+                ls(".");
+            }
+            else if (strcmp(buff, "cd") == 0) {
+                cd("..");
+            }
+            else if (strcmp(buff, "pwd") == 0) {
+                pwd();
+            }
+            else if (strcmp(buff, "rm") == 0) {
+                rm("test.txt", 0);
+            }
+            else if (strcmp(buff, "mkdir" == 0)) {
+                mkdir("test", 0777);
+            }
+            else if (strcmp(buff, "touch") == 0) {
+                touch("test.txt");
+            }
+            else printf("%s not found\n", buff);
+
             close(client_socket);
         }
     }
