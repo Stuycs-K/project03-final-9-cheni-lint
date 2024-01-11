@@ -3,13 +3,6 @@
 #include "terminal.h"
 #include <stdio.h>
 
-void clientLogic(int server_socket, char* str) {
-  send(server_socket,str,sizeof(str),0);
-  read(server_socket,str,BUFFER_SIZE);
-  printf("returned str: %s\n", str);
-  close(server_socket);
-}
-
 int main(int argc, char *argv[] ) {
   char str[BUFFER_SIZE];
   char* IP = "127.0.0.1";
@@ -30,7 +23,13 @@ int main(int argc, char *argv[] ) {
     int server_socket = client_tcp_handshake(IP);
 
     printf("server socket connection: [%d]\n", server_socket);
-    clientLogic(server_socket, str);
-    sleep(1);
+
+    send(server_socket, str, sizeof(str), 0);
+
+    char response[BUFFER_SIZE];
+    read(server_socket, response, sizeof(response));
+
+    close(server_socket);
+    // sleep(1);
   }
 }
