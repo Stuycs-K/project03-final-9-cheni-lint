@@ -101,13 +101,13 @@ int server_terminal(char* userinput){
 
 
         for(int i=0;i<last_ind;i++){
+            printf("commands[%d]: %s\n", i, commands[i]);
             int command_length=0;
-            char** words=calloc(100,sizeof(char*));
             parse_argss(commands[i], words, " ", &command_length);
             if(strcmp(words[0],"exit")==0){
                 free(words);
                 free(commands);
-                free(userinput);
+                // free(userinput);
                 printf("exit\n");
                 exit(0);
             }
@@ -141,8 +141,9 @@ int server_terminal(char* userinput){
             }
             else printf("%s not found\n", commands[i]);
         }
-        free(userinput);
+        // free(userinput);
         free(commands);
+        free(words);
         printf("reached bottom\n");
 
 

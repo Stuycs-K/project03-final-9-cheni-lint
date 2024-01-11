@@ -28,8 +28,12 @@ in class: figure out why it connects back and forth (1hr)
 outisde of class: figure out how to do multiple concurrent client, started on the skeleton of terminal making (1 hr)
 
 ### 2024-01-09 - work on terminal.c
-in class: worked on a skeleton of terminal.c, not very sure if this is how it works or if where to read from so I
-defaulted to stdin for now
+in class/at home: worked on a skeleton of terminal.c, not very sure if this is how it works or if where to read from so I
+defaulted to stdin for now (1.5hr)
+
+### 2024-01-10 - made terminal and server more compatible
+in class: moved terminal logic into the server main() and started testing (1 hr)
+at home: debugging (.5 hr)
 
 ## Ivan
 

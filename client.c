@@ -21,7 +21,7 @@ int main(int argc, char *argv[] ) {
     printf("input str: \n");
     fgets(str, BUFFER_SIZE, stdin);
 
-    if (strcmp(str, "end\n") == 0) {
+    if (strcmp(str, "exit\n") == 0) {
       printf("ending process...\n");
       exit(0);
     }
