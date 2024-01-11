@@ -115,7 +115,7 @@ int main() {
             // restore stdout
             dup2(cpy, STDOUT_FILENO);
 
-            // close(client_socket);
+            close(client_socket);
         }
     }
 
