@@ -23,20 +23,6 @@ fileman.o: fileman.c network.h fileman.h
 terminal.o: terminal.c network.h terminal.h fileman.h
 	@gcc -c terminal.c  -lm
 
-# for testing
-fileman.out: fileman.o network.o
-	@gcc -c fileman.out network.o fileman.o -w -lm
-
-fileman: fileman.out
-	@./fileman.out $(ARGS)
-
-# for testing
-terminal.out: terminal.o network.o fileman.o 
-	@gcc -c terminal.out network.o terminal.o fileman.o  -lm
-
-terminal: terminal.out
-	@./terminal.out $(ARGS)
-
 clean:
 	@rm *.o 2> /dev/null || true
 	@rm *~ 2> /dev/null || true
