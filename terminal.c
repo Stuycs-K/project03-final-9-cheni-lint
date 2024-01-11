@@ -20,12 +20,11 @@ int error(){
     exit(1);
 }
 
-char **  parse_argss( char * line, char ** arg_ary, char* c, int* a ){
+char** parse_argss( char * line, char ** arg_ary, char* c, int* a ) {
     int i=0;
     char* command;
     while (command = strsep(&line, c)){
-        if(arg_ary[i]==NULL){
-        }
+        if(arg_ary[i]==NULL) {}
         arg_ary[i] = command;
         i++;
     }
