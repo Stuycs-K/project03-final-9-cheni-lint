@@ -1,6 +1,6 @@
 compile client.out server.out: client.o server.o network.o fileman.o terminal.o
-	@gcc -o client.out client.o network.o fileman.o terminal.o  -lm
-	@gcc -o server.out server.o network.o fileman.o terminal.o  -lm
+	@gcc -o client.out client.o network.o fileman.o terminal.o -w -lm
+	@gcc -o server.out server.o network.o fileman.o terminal.o -w -lm
 
 client: client.out
 	@./client.out $(ARGS)
@@ -21,7 +21,7 @@ fileman.o: fileman.c network.h fileman.h
 	@gcc -c fileman.c -w -lm
 
 terminal.o: terminal.c network.h terminal.h fileman.h
-	@gcc -c terminal.c  -lm
+	@gcc -c terminal.c -w -lm
 
 clean:
 	@rm *.o 2> /dev/null || true

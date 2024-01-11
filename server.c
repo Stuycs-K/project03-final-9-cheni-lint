@@ -1,6 +1,33 @@
 #include "network.h"
 #include "fileman.h"
 #include "terminal.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h> 
+#include <unistd.h>
+#include <string.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <errno.h>
+#include <time.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <math.h>
+#include <ctype.h>
+#include <stdbool.h>
+#include <sys/wait.h>
+#include <signal.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <time.h>
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
+#include <unistd.h>
+#include <stdlib.h>
+
 
 int sig_handler(int signo) {
     if (signo == SIGPIPE) {
