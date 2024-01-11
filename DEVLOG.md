@@ -55,3 +55,7 @@ started to think about server side of handling terminal input
 added ability to test input from user (client) in server.c
 waiting for terminal part to be complete so args are actually properly handled
 started thinking about how to transfer the files between server and client
+
+### 2024-01-10 - Fileman + Server
+added redirect from server stdout to client socket
+tried to debug error with this causing the server to hang after sending a particularly large message
