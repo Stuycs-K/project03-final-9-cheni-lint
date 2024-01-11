@@ -1,5 +1,16 @@
 #include "network.h"
 #include "fileman.h"
+#include <signal.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <dirent.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <errno.h>
+#include <stdio.h>
 
 char * rpath(char * name, struct dirent * entry) {
     char rpath[BUFFER_SIZE];

@@ -1,21 +1,15 @@
 #include "network.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h> 
-#include <unistd.h>
-#include <string.h>
-#include <sys/stat.h>
-#include <errno.h>
-#include <time.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <math.h>
-#include <ctype.h>
-#include <stdbool.h>
-#include <sys/wait.h>
 #include <signal.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <dirent.h>
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
+#include <errno.h>
+#include <stdio.h>
 
 /*Connect to the server
  *return the to_server socket descriptor
