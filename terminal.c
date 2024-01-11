@@ -61,9 +61,6 @@ char **  parse_args( char * line, char ** arg_ary, char* c){
 int server_terminal(char* userinput){
     // setvbuf(stdout, NULL, _IONBF, 0);
     // while(1){
-
-
-
         char s[100];
         char** words=calloc(100,sizeof(char*));
         char ** commands=calloc(100,sizeof(char*));
@@ -144,9 +141,9 @@ int server_terminal(char* userinput){
                 if(stat(words[1], stat_b)<0) error();
                 if(size(words[1], S_ISDIR(stat_b->st_mode))<0) error();
             }
-            // else if (strcmp(words[0],"mkdir")==0) {
-            //     mkdir(words[1], 0777);
-            // }
+            else if (strcmp(words[0],"mkdir")==0) {
+                mkdir(words[1], 0777);
+            }
             else if (strcmp(words[0],"touch")==0) {
                 touch(words[1]);
             }
