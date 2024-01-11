@@ -16,6 +16,7 @@ int main(int argc, char *argv[] ) {
     IP=argv[1];
   }
   printf("client connected with IP: [%s]\n", IP);
+
   while(1){
     printf("input str: \n");
     fgets(str, BUFFER_SIZE, stdin);
@@ -26,6 +27,7 @@ int main(int argc, char *argv[] ) {
     }
 
     int server_socket = client_tcp_handshake(IP);
+
     printf("server socket connection: [%d]\n", server_socket);
     clientLogic(server_socket, str);
     sleep(1);
