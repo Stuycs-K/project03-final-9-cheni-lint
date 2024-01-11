@@ -30,6 +30,6 @@ int main(int argc, char *argv[] ) {
     read(server_socket, response, sizeof(response));
 
     close(server_socket);
-    // sleep(1);
+    sleep(0.2);
   }
 }
