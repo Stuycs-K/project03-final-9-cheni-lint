@@ -2,6 +2,10 @@
 #include "fileman.h"
 #include "terminal.h"
 #include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/socket.h>
 
 int main(int argc, char *argv[] ) {
   char str[BUFFER_SIZE];
