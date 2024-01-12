@@ -32,7 +32,7 @@ int main() {
     getaddrinfo(NULL, PORT, hints, &results);  //NULL is localhost or 127.0.0.1
 
     //create socket
-    int listen_socket = socket(results->ai_family, results->ai_socktype, results->ai_protocol);\
+    int listen_socket = socket(results->ai_family, results->ai_socktype, results->ai_protocol);
 
     //this code allows the port to be freed after program exit.  (otherwise wait a few minutes)
     int yes = 1;
@@ -57,7 +57,7 @@ int main() {
     fd_set read_fds;
     fd_set backup_fd_set = read_fds;
 
-    char* buff=calloc(1025, sizeof(char));
+    char* buff = calloc(1025, sizeof(char));
 
     while(1){
 
@@ -68,7 +68,7 @@ int main() {
 
         //if standard in, use fgets
         if (FD_ISSET(STDIN_FILENO, &read_fds)) {
-            fgets(buff, sizeof(buff), stdin);
+            fgets(buff, BUFFER_SIZE, stdin);
             buff[strlen(buff)-1]=0;
             printf("Recieved from terminal: '%s'\n",buff);
         }
@@ -80,7 +80,8 @@ int main() {
             printf("Connected, waiting for data.\n");
 
             //read the whole buff
-            read(client_socket,buff, sizeof(buff));
+            read(client_socket, buff, BUFFER_SIZE);
+
             //trim the string
             buff[strlen(buff)-1]=0; //clear newline
             if(buff[strlen(buff)-1]==13){
