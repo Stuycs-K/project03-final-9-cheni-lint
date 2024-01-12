@@ -13,6 +13,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 int error(){
     printf("errno %d\n",errno);
@@ -21,28 +22,22 @@ int error(){
 }
 
 char **  parse_argss( char * line, char ** arg_ary, char* c, int* a ){
-    printf("line: %s   c: %c\n", line, *c);
-    printf("%d %d\n", line[2]=='\n', line[3]=='\0');
+    // printf("line: %s   c: %c\n", line, *c);
     int i=0;
     char* command;
     while (command = strsep(&line, c)){
-        printf("command: NULL\n");
-        printf("line: %s %d %d\n", line, command==NULL, arg_ary[i]==NULL);
-        if(command==NULL){
-            printf("command: NULL\n");
-        }else{
-            printf("command: %s\n", command);
-        }
+        // if(command==NULL){
+        //     printf("command: NULL\n");
+        // }else{
+        //     printf("command: %s\n", command);
+        // }
         arg_ary[i] = command;
-        printf("arr[%d]: %s \n", i, arg_ary[i]);
+        // printf("arr[%d]: %s \n", i, arg_ary[i]);
         i++;
-    }
-    if(command==NULL){
-        printf("command: NULL\n");
     }
     arg_ary[i]=NULL;
     int k=0;
-    printf("arg_ary[i-1]: %s\n", arg_ary[i-1]);
+    // printf("arg_ary[i-1]: %s\n", arg_ary[i-1]);
     while(arg_ary[i-1][k]){
         if(arg_ary[i-1][k]=='\n'||arg_ary[i-1][k]=='\r'){
             arg_ary[i-1][k]='\0';
@@ -80,8 +75,7 @@ int server_terminal(char* userinput){
         char s[100];
         char** words=calloc(100,sizeof(char*));
         char ** commands=calloc(100,sizeof(char*));
-        // printf("%s$ ", getcwd(s, 100));
-        // printf("userinput : %s\n", userinput);
+        printf("%s$ %s\n", getcwd(s, 100), userinput);
         if(userinput[0]=='e'&&userinput[1]=='x'&&userinput[2]=='i'&&userinput[3]=='t'&&userinput[4]!='\n'){
             printf("exit\n");
             exit(0);
@@ -101,19 +95,19 @@ int server_terminal(char* userinput){
             // }
             random_ind++;
         }
-        printf("random_int: %d\n", random_ind);
-        userinput[random_ind]='\n';
-        userinput[random_ind+1]='\0';
+        // printf("random_int: %d\n", random_ind);
+        // userinput[random_ind]='\n';
+        // userinput[random_ind+1]='\0';
         // printf("not terminal input: %d\n", not_terminal_input);
-        printf("command: %s\n", userinput);
+        // printf("command: %s\n", userinput);
         // fflush(stdout);
         int last_ind=0;
-        userinput[0]='a';
-        printf("userinput: %s\n", userinput);
-        printf("testing %s\n", strsep(userinput, ";"));
+        // userinput[0]='a';
+        // printf("userinput: %s\n", userinput);
+        // printf("testing %s\n", strsep(&userinput, ";"));
         parse_argss(userinput, commands, ";", &last_ind);
-        printf("after parss: %s  %d\n", commands[0], last_ind);
-        printf("ahhhhh\n");
+        // printf("after parss: %s  %d\n", commands[0], last_ind);
+        // printf("ahhhhh\n");
 
 
         for(int i=0;i<last_ind;i++){
@@ -142,7 +136,11 @@ int server_terminal(char* userinput){
                 if(cd(words[1])<0) error();
             }
             else if(strcmp(words[0],"ls")==0){
-                if(ls(words[1])<0) error();
+                if(last_ind==1){
+                    if(ls(".")<0) error();
+                }else{
+                    if(ls(words[1])<0) error();
+                }
             }
             else if(strcmp(words[0],"size")==0){
                 struct stat * stat_b=malloc(sizeof(struct stat)*1);
