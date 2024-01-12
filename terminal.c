@@ -20,16 +20,29 @@ int error(){
     exit(1);
 }
 
-char** parse_argss( char * line, char ** arg_ary, char* c, int* a ) {
+char **  parse_argss( char * line, char ** arg_ary, char* c, int* a ){
+    printf("line: %s   c: %c\n", line, *c);
+    printf("%d %d\n", line[2]=='\n', line[3]=='\0');
     int i=0;
     char* command;
     while (command = strsep(&line, c)){
-        if(arg_ary[i]==NULL) {}
+        printf("command: NULL\n");
+        printf("line: %s %d %d\n", line, command==NULL, arg_ary[i]==NULL);
+        if(command==NULL){
+            printf("command: NULL\n");
+        }else{
+            printf("command: %s\n", command);
+        }
         arg_ary[i] = command;
+        printf("arr[%d]: %s \n", i, arg_ary[i]);
         i++;
+    }
+    if(command==NULL){
+        printf("command: NULL\n");
     }
     arg_ary[i]=NULL;
     int k=0;
+    printf("arg_ary[i-1]: %s\n", arg_ary[i-1]);
     while(arg_ary[i-1][k]){
         if(arg_ary[i-1][k]=='\n'||arg_ary[i-1][k]=='\r'){
             arg_ary[i-1][k]='\0';
@@ -61,6 +74,9 @@ char **  parse_args( char * line, char ** arg_ary, char* c){
 int server_terminal(char* userinput){
     // setvbuf(stdout, NULL, _IONBF, 0);
     // while(1){
+
+
+
         char s[100];
         char** words=calloc(100,sizeof(char*));
         char ** commands=calloc(100,sizeof(char*));
@@ -70,43 +86,33 @@ int server_terminal(char* userinput){
             printf("exit\n");
             exit(0);
         }
-        bool need_to_add_null=true;
-        bool not_terminal_input=false;
         int random_ind=0;
         while(userinput[random_ind]){
-            if(userinput[random_ind]=='\r'){
-                need_to_add_null=false;
-                not_terminal_input=true;
-                // printf("equal r\n");
-            }
-            if(userinput[random_ind]=='\n'){
-                need_to_add_null=false;
-                not_terminal_input=true;
-                // printf("equal n\n");
-            }
-            if(userinput[random_ind]=='\0'){
-                // printf("equal 0\n");
-            }
+            // if(userinput[random_ind]=='\r'){
+            //     printf("r: %d\n", random_ind);
+            //     userinput[random_ind]='\n';
+            //     userinput[random_ind+1]='\0';
+            //     break;
+            // }
+            // if(userinput[random_ind]=='\n'){
+            //     printf("n: %d\n", random_ind);
+            //     userinput[random_ind+1]='\0';
+            //     break;
+            // }
             random_ind++;
         }
-        // printf("userinput need to be nulled %d  equal 0: %d\n", need_to_add_null,*userinput!='\0');
-        if(need_to_add_null&&*userinput!='\0'){
-            strcat(userinput, "\n");
-            strcat(userinput, "\r");
-            not_terminal_input=true;
-        }
-        if(*userinput=='\0'||*userinput=='\r'){
-            printf("End of File\nlogout\n");
-            exit(0);
-        }
+        printf("random_int: %d\n", random_ind);
+        userinput[random_ind]='\n';
+        userinput[random_ind+1]='\0';
         // printf("not terminal input: %d\n", not_terminal_input);
-        if(not_terminal_input){
-            printf("command: %s", userinput);
-        }
+        printf("command: %s\n", userinput);
         // fflush(stdout);
         int last_ind=0;
+        userinput[0]='a';
+        printf("userinput: %s\n", userinput);
+        printf("testing %s\n", strsep(userinput, ";"));
         parse_argss(userinput, commands, ";", &last_ind);
-        printf("after parss: %s  %d\n", )
+        printf("after parss: %s  %d\n", commands[0], last_ind);
         printf("ahhhhh\n");
 
 
@@ -143,9 +149,9 @@ int server_terminal(char* userinput){
                 if(stat(words[1], stat_b)<0) error();
                 if(size(words[1], S_ISDIR(stat_b->st_mode))<0) error();
             }
-            else if (strcmp(words[0],"mkdir")==0) {
-                mkdir(words[1], 0777);
-            }
+            // else if (strcmp(words[0],"mkdir")==0) {
+            //     mkdir(words[1], 0777);
+            // }
             else if (strcmp(words[0],"touch")==0) {
                 touch(words[1]);
             }

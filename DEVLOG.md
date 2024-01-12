@@ -35,6 +35,10 @@ defaulted to stdin for now (1.5hr)
 in class: moved terminal logic into the server main() and started testing (1 hr)
 at home: debugging (.5 hr)
 
+### 2024-01-11 - debugging
+in class: fixed makefile linking, check the errors and added all the import back (1hr)
+at home: strsep is giving me a segfault and I cant figure out why (3hr)
+
 ## Ivan
 
 ### 2024-01-02 - Brief description
