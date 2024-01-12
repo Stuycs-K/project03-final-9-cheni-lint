@@ -67,3 +67,7 @@ started thinking about how to transfer the files between server and client
 ### 2024-01-10 - Fileman + Server
 added redirect from server stdout to client socket
 tried to debug error with this causing the server to hang after sending a particularly large message
+
+### 2024-01-11 - Fileman + Server
+resolved bugs with sending msgs from client (limited to 8 bytes since accidentally used sizeof(char *))
+resolved import errors
