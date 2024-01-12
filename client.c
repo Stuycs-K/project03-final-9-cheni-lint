@@ -1,7 +1,19 @@
 #include "network.h"
 #include "fileman.h"
 #include "terminal.h"
+#include <signal.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <dirent.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <errno.h>
 #include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
 
 int main(int argc, char *argv[] ) {
   char str[BUFFER_SIZE];
@@ -27,7 +39,7 @@ int main(int argc, char *argv[] ) {
     send(server_socket, str, sizeof(str), 0);
 
     char response[BUFFER_SIZE];
-    read(server_socket, response, sizeof(response));
+    // read(server_socket, response, sizeof(response));
 
     close(server_socket);
     sleep(0.2);

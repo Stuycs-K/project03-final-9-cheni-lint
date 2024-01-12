@@ -12,6 +12,8 @@
 #include <netdb.h>
 #include <errno.h>
 #include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
 
 int sig_handler(int signo) {
     if (signo == SIGPIPE) {
@@ -79,8 +81,12 @@ int main() {
             int client_socket = accept(listen_socket,(struct sockaddr *)&client_address, &sock_size);
             printf("Connected, waiting for data.\n");
 
-            //read the whole buff
-            read(client_socket, buff, BUFFER_SIZE);
+            if (read(client_socket, buff, BUFFER_SIZE) == 0) {
+                // Client disconnected
+                printf("Client disconnected, socket fd is %d\n", client_socket);
+                close(client_socket);
+                client_sockets[i] = 0;
+            }
 
             //trim the string
             buff[strlen(buff)-1]=0; //clear newline
@@ -93,14 +99,15 @@ int main() {
             if(client_socket<0) printf("client negative");
 
             // redirect stdout to client_socket
+            int fd1 = open("foo.txt", O_WRONLY);
             int cpy = dup(STDOUT_FILENO);
             if(cpy<0) printf("cpy negative");
-            // dup2(client_socket, STDOUT_FILENO);
+            dup2(fd1, STDOUT_FILENO);
             
             if (server_terminal(buff) < 0) error();
 
             // restore stdout
-            // dup2(cpy, STDOUT_FILENO);
+            dup2(cpy, STDOUT_FILENO);
 
             close(client_socket);
         }
