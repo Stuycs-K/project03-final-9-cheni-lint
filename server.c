@@ -89,17 +89,25 @@ int main() {
             }
 
             printf("\nRecieved from client [%d] '%s'\n", client_socket, buff);
+            if(client_socket<0) printf("client negative");
 
             // redirect stdout to client_socket
+            printf("segfault\n");
             int cpy = dup(STDOUT_FILENO);
-            dup2(client_socket, STDOUT_FILENO);
+            if(cpy<0) printf("cpy negative");
+            printf("segfault\n");
+            // dup2(client_socket, STDOUT_FILENO);
+            printf("segfault\n");
             
-            if (server_terminal(buff) < 0) err;
+            if (server_terminal(buff) < 0) error();
+            printf("segfault\n");
 
             // restore stdout
-            dup2(cpy, STDOUT_FILENO);
+            // dup2(cpy, STDOUT_FILENO);
+            printf("segfault\n");
 
             close(client_socket);
+            printf("segfault\n");
         }
     }
 

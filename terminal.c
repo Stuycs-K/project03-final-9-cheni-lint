@@ -105,11 +105,13 @@ int server_terminal(char* userinput){
         }
         // printf("not terminal input: %d\n", not_terminal_input);
         if(not_terminal_input){
-            printf("%s", userinput);
+            printf("command: %s", userinput);
         }
-        fflush(stdout);
+        // fflush(stdout);
         int last_ind=0;
         parse_argss(userinput, commands, ";", &last_ind);
+        printf("after parss: %s  %d\n", )
+        printf("ahhhhh\n");
 
 
         for(int i=0;i<last_ind;i++){
