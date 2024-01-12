@@ -25,7 +25,7 @@ int main(int argc, char *argv[] ) {
   printf("client connected with IP: [%s]\n", IP);
 
   while(1){
-    printf("input str: \n");
+    printf("command: \n");
     fgets(str, BUFFER_SIZE, stdin);
 
     if (strcmp(str, "exit\n") == 0) {
@@ -35,14 +35,14 @@ int main(int argc, char *argv[] ) {
 
     int server_socket = client_tcp_handshake(IP);
 
-    printf("server socket connection: [%d]\n", server_socket);
-
     send(server_socket, str, sizeof(str), 0);
 
-    char response[BUFFER_SIZE];
-    // read(server_socket, response, sizeof(response));
+    char* response=calloc(BUFFER_SIZE, sizeof(char));
+    read(server_socket, response, BUFFER_SIZE);
+    printf("%s\n", response);
 
     close(server_socket);
     sleep(0.2);
+    free(response);
   }
 }

@@ -13,6 +13,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 int error(){
     printf("errno %d\n",errno);
@@ -65,20 +66,23 @@ char **  parse_args( char * line, char ** arg_ary, char* c){
     }
 }
 
-int server_terminal(char* userinput){
+int server_terminal(char* userinput, int client_socket){
     // setvbuf(stdout, NULL, _IONBF, 0);
     // while(1){
 
 
 
+        char* message=calloc(1025, sizeof(char));
         char s[100];
         char** words=calloc(100,sizeof(char*));
         char ** commands=calloc(100,sizeof(char*));
-        printf("%s$ %s\n", getcwd(s, 100), userinput);
-        if(userinput[0]=='e'&&userinput[1]=='x'&&userinput[2]=='i'&&userinput[3]=='t'&&userinput[4]!='\n'){
-            printf("exit\n");
-            exit(0);
-        }
+        // snprintf(message, sizeof(message), getcwd(s, 100), "# ", userinput);
+        strcat(message, getcwd(s, 100));
+        strcat(message, "# ");
+        strcat(message, userinput);
+        strcat(message, "\n");
+        // printf("message: %s\n", message);
+        // write(client_socket, message, BUFFER_SIZE); 
         int random_ind=0;
         while(userinput[random_ind]){
             // if(userinput[random_ind]=='\r'){
@@ -108,11 +112,17 @@ int server_terminal(char* userinput){
         // printf("after parss: %s  %d\n", commands[0], last_ind);
         // printf("ahhhhh\n");
 
-
         for(int i=0;i<last_ind;i++){
-            printf("commands[%d]: %s\n", i, commands[i]);
+            bool p=true;
             int command_length=0;
             parse_argss(commands[i], words, " ", &command_length);
+            if(strcmp(words[0],"ls")==0 || strcmp(words[0],"pwd")==0){
+                p=false;
+            }
+            if(p){
+                write(client_socket, message, BUFFER_SIZE); 
+            }
+            // printf("commands[%d]: %s\n", i, commands[i]);
             if(strcmp(words[0],"exit")==0){
                 free(words);
                 free(commands);
@@ -129,16 +139,16 @@ int server_terminal(char* userinput){
                 if(rm(words[1], S_ISDIR(stat_b->st_mode))<0) error();
             }
             else if(strcmp(words[0],"pwd")==0){
-                if(pwd()<0) error();
+                if(pwd(client_socket, message)<0) error();
             }
             else if(strcmp(words[0],"cd")==0){
                 if(cd(words[1])<0) error();
             }
             else if(strcmp(words[0],"ls")==0){
                 if(last_ind==1){
-                    if(ls(".")<0) error();
+                    if(ls(".", client_socket, message)<0) error();
                 }else{
-                    if(ls(words[1])<0) error();
+                    if(ls(words[1], client_socket, message)<0) error();
                 }
             }
             else if(strcmp(words[0],"size")==0){
@@ -155,9 +165,10 @@ int server_terminal(char* userinput){
             else printf("%s not found\n", commands[i]);
         }
         // free(userinput);
+        message[0]='\0';
         free(commands);
         free(words);
-        printf("reached bottom\n");
+        free(message);
 
 
 

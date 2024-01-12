@@ -57,6 +57,13 @@ int main() {
     struct sockaddr_storage client_address;
     sock_size = sizeof(client_address);
 
+    int client_sockets[100];
+    for (int i = 0; i < 100; i++) {
+        client_sockets[i] = 0;
+    }
+    client_sockets[0]=STDIN_FILENO;
+    client_sockets[1]=listen_socket;
+
     fd_set read_fds;
     fd_set backup_fd_set = read_fds;
 
@@ -65,8 +72,11 @@ int main() {
     while(1){
 
         FD_ZERO(&read_fds);
-        FD_SET(STDIN_FILENO, &read_fds);
-        FD_SET(listen_socket,&read_fds);
+         for (int i = 0; i < 100; i++) {
+            if (client_sockets[i] > 0) {
+                FD_SET(client_sockets[i], &read_fds);
+            }
+        }
         int i = select(listen_socket+1, &read_fds, NULL, NULL, NULL);
 
         //if standard in, use fgets
@@ -96,19 +106,19 @@ int main() {
                 buff[strlen(buff)-1]=0;
             }
 
-            printf("\nRecieved from client [%d] '%s'\n", client_socket, buff);
+            printf("\nRecieved from client '%s'\n", buff);
             if(client_socket<0) printf("client negative");
 
             // redirect stdout to client_socket
             int fd1 = open("foo.txt", O_WRONLY);
             int cpy = dup(STDOUT_FILENO);
             if(cpy<0) printf("cpy negative");
-            dup2(fd1, STDOUT_FILENO);
+            // dup2(fd1, STDOUT_FILENO);
             
-            if (server_terminal(buff) < 0) error();
+            if (server_terminal(buff, client_socket) < 0) error();
 
             // restore stdout
-            dup2(cpy, STDOUT_FILENO);
+            // dup2(cpy, STDOUT_FILENO);
 
             close(client_socket);
         }

@@ -43,15 +43,21 @@ int size(char* name, char is_dir) {
     return stats.st_size;
 }
 
-int ls(char * name) {
+int ls(char * name, int client_socket, char* buffer) {
     struct dirent * entry;
     DIR *dir = opendir(name);
+    int i=0;
     while (entry = readdir(dir)) {
-        printf("%s %7d %12s\n",
-               entry->d_type == DT_DIR ? "d" : "f",
-               size(entry->d_name, 0),
-               entry->d_name);
+        char* this_line[256];
+        // printf("%s %7d %12s\n",
+        //        entry->d_type == DT_DIR ? "d" : "f",
+        //        size(entry->d_name, 0),
+        //        entry->d_name);
+        sprintf(this_line, "%s %7d %12s\n", entry->d_type == DT_DIR ? "d" : "f", size(entry->d_name, 0), entry->d_name);
+        strcat(buffer, this_line);
+        i++;
     }
+    write(client_socket, buffer, BUFFER_SIZE*i); 
 }
 
 int cd(char * name) {
@@ -59,9 +65,13 @@ int cd(char * name) {
     return 0;
 }
 
-int pwd() {
-    char cwd[BUFFER_SIZE];
-    if (getcwd(cwd, sizeof(cwd))) printf("%s\n", cwd);
+int pwd(int client_socket, char* cwd) {
+    char* buff[1025];
+    if (getcwd(buff, 1024)){
+        strcat(cwd, buff);
+        // printf("cwd: %s %d\n", cwd, strlen(cwd));
+        write(client_socket, cwd, BUFFER_SIZE); 
+    }
     else perror("getcwd failed");
     return 0;
 }
