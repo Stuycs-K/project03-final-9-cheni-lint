@@ -48,7 +48,7 @@ at home: made terminal look better and fix the comunication sen message logic (3
 ### 2024-01-14 - laptop broke
 
 ### 2024-01-15 - touch up
-add signals and check up with ivan on progress and tested mkdir and other commands and tested that it can connect across different machines
+add signals and check up with ivan on progress and tested mkdir and other commands and tested that it can connect across different machines (.5 hrs)
 
 ## Ivan
 
