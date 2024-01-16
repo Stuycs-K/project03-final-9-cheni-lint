@@ -7,21 +7,19 @@
        
 # Intentions:
 
-We want to be able to access files on another machine. We do this by creating a client-server system such that the machine that stores the file always has an open server that can accept multiple concurrent clients. Once the client successfully connects to the server, it will gain access to a terminal which it uses to communicate with the subserver. There will be custom commands that allow the client to access the files it wants.
+We want to be able to access files on another machine. We do this by creating a client-server system such that the machine that stores the file always has an open server that can accept multiple concurrent clients. Once the client successfully connects to the server, it will gain access to a terminal which it uses to communicate with the subserver. There will be custom commands that allow the client to access the files it wants. All the changes between the client will be sync to prevent conflicts.
    
 # Intended usage:
 
-The client can connect to the server on any machine, most likely their own, and it will open up a terminal. In the terminal there will be customized commands they can use to help them navigate and access the files they want. 
+The client can connect to the server on any machine and it will open up a terminal. In the terminal there will be customized commands they can use to help them navigate and access the files they want. 
  
 # Technical Details:
 
 Technical Design
-- Allocating memory (file tree)
 - Working with files (remote file system)
 - Finding information about files (sync feature)
-- Processes (fork out subservers to handle client interaction)
+- Processes (use select to handle client interaction)
 - Signals (tracking client sessions and handling interruptions when writing)
-- Semaphores (controlling write access to each file)
 - Sockets (communication between servers and clients)
 
 
@@ -43,8 +41,6 @@ Extra:
 
 Algorithms/Data Structures
 - TCP-like handshake to establish client connection
-- Array for storing a copy of the file structure
-- Semaphores for write queue
    
 # Intended pacing:
 
