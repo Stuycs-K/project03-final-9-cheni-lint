@@ -28,4 +28,4 @@ clean:
 	@rm *~ 2> /dev/null || true
 	@rm *client 2> /dev/null || true
 	@rm *server 2> /dev/null || true
-
+	@rm *.out 2> /dev/null || true
