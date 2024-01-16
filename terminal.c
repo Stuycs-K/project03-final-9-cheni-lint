@@ -1,6 +1,7 @@
 #include "network.h"
 #include "terminal.h"
 #include "fileman.h"
+#include "transfer.h"
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -154,12 +155,15 @@ int server_terminal(char* userinput, int client_socket){
                 if(stat(words[1], stat_b)<0) error();
                 if(size(words[1], S_ISDIR(stat_b->st_mode))<0) error();
             }
-            // else if (strcmp(words[0],"mkdir")==0) {
-            //     mkdir(words[1], 0777);
-            // }
+            else if (strcmp(words[0],"mkdir")==0) {
+                mkdir(words[1], 0777);
+            }
             else if (strcmp(words[0],"touch")==0) {
                 touch(words[1]);
             }
+            // else if (strcmp(words[0], "down") == 0) {
+            //     transfer(words[1], client_socket);
+            // }
             else printf("%s not found\n", commands[i]);
         }
         // free(userinput);
