@@ -34,7 +34,7 @@ int client_tcp_handshake(char * server_address) {
   // printf("stuck 1\n");
   //connect to the server
   if (connect(serverd, results->ai_addr, results->ai_addrlen)<0){
-    printf("negative connect\n");
+    printf("server could not be found\n");
   }
 
   // printf("stuck 2\n");
