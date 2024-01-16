@@ -3,6 +3,8 @@
 
 ### The !Better FTP Incorporated
 
+Team Lychee
+
 1. Tracey Lin
 2. Ivan Chen
        
@@ -14,7 +16,7 @@ This is an FTP-like program which consists of a server client connection to allo
 
 How does the user install/compile/run the program.
 
-The user will interact with this program through a terminal with the commands defined in the table below. 
+The user will type "make compile" to make sure everything is up to date then type "make client" plus use ARGS= to connect with their desires machine and interact with this program through a terminal with the commands defined in the table below. 
 
 |command|usage|function|
 |-------|-----|--------|
