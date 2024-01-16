@@ -16,7 +16,26 @@
 #include <string.h>
 #include <stdlib.h>
 
+int sig_handler(int signo) {
+    if (signo == SIGPIPE) {
+        printf("SIGPIPE caught\n");
+    }
+    if ( signo == SIGINT ){
+        printf("SIGINT caught\n");
+        exit(0);
+    }
+    if ( signo == SIGQUIT ){
+        printf("SIGQUIT caught\n");
+        exit(0);
+    }
+}
+
 int main(int argc, char *argv[] ) {
+  signal(SIGPIPE, sig_handler);
+  signal(SIGINT, sig_handler);
+  signal(SIGQUIT, sig_handler);
+
+
   char str[BUFFER_SIZE];
   char* IP = "127.0.0.1";
   if(argc>1){
