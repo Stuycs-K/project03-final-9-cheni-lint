@@ -1,7 +1,7 @@
 #include "network.h"
 #include "terminal.h"
 #include "fileman.h"
-#include "transfer.h"
+// #include "transfer.h"
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
