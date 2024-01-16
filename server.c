@@ -21,11 +21,11 @@ int sig_handler(int signo) {
         printf("SIGPIPE caught\n");
     }
     if ( signo == SIGINT ){
-        printf("SIGINT caught\n");
+        printf("SIGINT caught: killing server\n");
         exit(0);
     }
     if ( signo == SIGQUIT ){
-        printf("SIGQUIT caught\n");
+        printf("SIGQUIT caught: killing server\n");
         exit(0);
     }
 }

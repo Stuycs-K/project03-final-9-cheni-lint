@@ -70,8 +70,6 @@ int server_terminal(char* userinput, int client_socket){
     // setvbuf(stdout, NULL, _IONBF, 0);
     // while(1){
 
-
-
         char* message=calloc(1025, sizeof(char));
         char s[100];
         char** words=calloc(100,sizeof(char*));
@@ -169,11 +167,7 @@ int server_terminal(char* userinput, int client_socket){
         free(commands);
         free(words);
         free(message);
-
-
-
     // }
-
 
     // printf("logout\n");
     // exit(0);
