@@ -20,11 +20,21 @@ int sig_handler(int signo) {
     if (signo == SIGPIPE) {
         printf("SIGPIPE caught\n");
     }
+    if ( signo == SIGINT ){
+        printf("SIGINT caught\n");
+        exit(0);
+    }
+    if ( signo == SIGQUIT ){
+        printf("SIGQUIT caught\n");
+        exit(0);
+    }
 }
 
 int main() {
 
     signal(SIGPIPE, sig_handler);
+    signal(SIGINT, sig_handler);
+    signal(SIGQUIT, sig_handler);
 
     struct addrinfo *hints, *results;
     hints = calloc(1,sizeof(struct addrinfo));

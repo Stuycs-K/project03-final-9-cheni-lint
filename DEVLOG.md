@@ -39,6 +39,17 @@ at home: debugging (.5 hr)
 in class: fixed makefile linking, check the errors and added all the import back (1hr)
 at home: strsep is giving me a segfault and I cant figure out why (3hr)
 
+### 2024-01-12 - terminal
+in class: fix all the import stuffs now its not throwing me a thousand errors anymore (1hr)
+at home: made terminal look better and fix the comunication sen message logic (3hr)
+
+### 2024-01-13 - laptop broke
+
+### 2024-01-14 - laptop broke
+
+### 2024-01-15 - touch up
+add signals and check up with ivan on progress and tested mkdir and other commands and tested that it can connect across different machines
+
 ## Ivan
 
 ### 2024-01-02 - Brief description
