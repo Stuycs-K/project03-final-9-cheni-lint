@@ -26,7 +26,7 @@ The user will interact with this program through a terminal with the commands de
 |touch  |`touch <filename>`|creates new file|
 |rm     |`rm <filename>`|removes a file. use `-r` flag to remove recursively|
 |mkdir  |`mkdir <dirname>`|creates a directory|
-|size   |`size <filename>`|print out the size of a file. use `-r` flag to get size recursively|
+|size   |`size <filename>`|print out the size of a directory. use `-r` flag to get size recursively|
 |end    |`end`|ends client session with server|
 
 ### Project Structure
