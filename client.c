@@ -44,11 +44,14 @@ int main(int argc, char *argv[] ) {
   printf("client connected with IP: [%s]\n", IP);
 
   while(1){
-    fgets(str, BUFFER_SIZE, stdin);
 
-    if (strcmp(str, "exit\n") == 0) {
-      printf("ending process...\n");
-      exit(0);
+      printf("> ");
+      fgets(str, BUFFER_SIZE, stdin);
+
+      if (strcmp(str, "exit\n") == 0)
+      {
+          printf("ending process...\n");
+          exit(0);
     }
 
     int server_socket = client_tcp_handshake(IP);
